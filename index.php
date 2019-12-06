@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once 'models/pdo.inc.php';
 require_once 'models/model.php';
 
@@ -10,35 +8,49 @@ session_start();
 $pdo = Pdogsb::getPdo();
 $isconnected = isconnected();
 
-$session = filter_input(INPUT_GET, 'get', FILTER_SANITIZE_STRING);
 
-
-require 'vues/v_header.php';
+require 'view/v_header.php';
 
 
 
 if (!$isconnected) 
 {
-    $session = 'connection';
-}else {
-    $session ='home';
+    $_GET['session'] = 'connection';
 }
+elseif (empty($_GET['session']))
+{
+    if ($_SESSION['role'] == 'visiteur')
+     {
+        $_GET['session'] ='visiteur';
+     }
+     else 
+     {
+        $_GET['session'] = 'comptable';
+     }
+    
+}
+var_dump($_GET['session']);
 
-
-switch ($session) 
+switch ($_GET['session']) 
 {
     case 'connection':
-        include 'controllers/c_connection.php';
+        require 'controllers/c_connection.php';
         break;
     
-    case 'home' :
-        include 'controllers/c_home.php';
+    case 'visiteur' :
+        require 'controllers/c_homevisiteur.php';
         break;
+
+    case 'comptable':
+        require 'controllers/c_homecomptable.php';
+    
+    case 'fichefrais':
+        require 'controllers/c_fichefrais.php';
 }
 
 
 
-require 'vues/v_end.php';
+require 'view/v_end.php';
 
 ?>
 

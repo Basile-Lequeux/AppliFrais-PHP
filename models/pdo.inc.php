@@ -66,6 +66,16 @@ class Pdogsb
     }
 
 
+    public function getFraisforfait($visiteur, $month)
+    {
+        $querydb = PdoGsb::$myPdo->prepare('SELECT * FROM lignefraisforfait WHERE idVisiteur = :userid AND mois = :thismonth ');
+        $querydb->bindParam(':userid', $visiteur, PDO::PARAM_STR);
+        $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+        $querydb->execute();
+
+        return $querydb = $querydb->fetch();
+
+    }
 
 
 
