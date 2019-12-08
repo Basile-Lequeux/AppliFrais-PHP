@@ -1,19 +1,23 @@
 <?php
 
-// require 'view/v_fichefrais.php';
+require 'view/v_navbar.php';
+
+
+
+
 
 
 $month = getMonth(date('d/m/Y'));
-
-
-echo('<br>');
-
-echo($_SESSION['userid']);
-
 
 
 
 $fraisforfait = $pdo->getFraisforfait($_SESSION['userid'], $month);
 
 
-// var_dump($fraisforfait);
+foreach($fraisforfait as $data)
+{
+    echo($data['quantite']);
+}
+
+
+require 'view/v_fichefrais.php';
