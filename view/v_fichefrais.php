@@ -1,8 +1,12 @@
-<div class="container py-5">
-  <div class="row py-5">
-    <div class="col-lg-10 mx-auto">
+<div class="container py-3">
+  <div class="row py-3">
+    
+    <div class="col-lg-7 mx-auto">
+    
       <div class="card rounded shadow border-0">
-        <div class="card-body p-5 bg-white rounded">
+     
+        <div class="card-body p-3 bg-white rounded">
+         <h1>Vos frais forfaitisés du mois <?php echo($month) ?></h1>
           <div class="table-responsive">
             <table id="example" style="width:100%" class="table table-striped table-bordered">
               <thead>

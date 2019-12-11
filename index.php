@@ -7,6 +7,8 @@ session_start();
 
 $pdo = Pdogsb::getPdo();
 $isconnected = isconnected();
+$month = getMonth(date('d/m/Y'));
+
 
 
 require 'view/v_header.php';
@@ -35,18 +37,25 @@ switch ($_GET['session'])
 {
     case 'connection':
         require 'controllers/c_connection.php';
-        break;
+    break;
     
     case 'visiteur' :
         require 'controllers/c_homevisiteur.php';
-        break;
+    break;
 
     case 'comptable':
         require 'controllers/c_homecomptable.php';
+    break;
     
     case 'fichefrais':
         require 'controllers/c_fichefrais.php';
-}
+    break;
+
+    case 'fichefraisform':
+        require 'controllers/c_fichefraisform.php';
+    break;
+} 
+
 
 
 

@@ -12,8 +12,6 @@ class Pdogsb
     private static $myPdoGsb = null;
 
 
-
-
     public function __construct()
     {
         Pdogsb::$myPdo = new PDO(  PdoGsb::$serveur . ';' . PdoGsb::$bdd,
@@ -66,15 +64,64 @@ class Pdogsb
     }
 
 
-    public function getFraisforfait($visiteur, $month)
+    public function getFraisForfait($visiteur, $month)
     {
-        $querydb = PdoGsb::$myPdo->prepare('SELECT quantite FROM lignefraisforfait WHERE idVisiteur = :userid AND mois = :thismonth ');
+        $querydb = PdoGsb::$myPdo->prepare('SELECT fraisforfait.id as idfrais, fraisforfait.libelle as libelle,
+        lignefraisforfait.quantite as quantite FROM lignefraisforfait INNER JOIN fraisforfait ON
+        fraisforfait.id = lignefraisforfait.idfraisforfait WHERE lignefraisforfait.idVisiteur = :userid 
+        AND lignefraisforfait.mois = :thismonth ORDER BY lignefraisforfait.idfraisforfait');
         $querydb->bindParam(':userid', $visiteur, PDO::PARAM_STR);
         $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
         $querydb->execute();
 
         return $querydb = $querydb->fetchall();
+    }
 
+    public function UpdateFraisForfait($userid, $month, $arrayfrais)
+    {
+        $keys = array_keys($arrayfrais);
+        foreach ($keys as $idfrais)
+        {
+            $qte = $arrayfrais[$idfrais];
+            $querydb = PdoGsb::$myPdo->prepare('UPDATE lignefraisforfait SET lignefraisforfait.quantite = :qte 
+            WHERE lignefraisforfait.idVisiteur = :userid AND lignefraisforfait.mois = :thismonth AND lignefraisforfait.idFraisForfait = :idfrais');
+
+            $querydb->bindParam(':qte', $qte, PDO::PARAM_INT);
+            $querydb->bindParam(':userid', $userid, PDO::PARAM_STR);
+            $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+            $querydb->bindParam(':idfrais', $idfrais, PDO::PARAM_STR);
+            $querydb->execute();
+        }
+    }
+
+
+    public function SetFraisForfait($userid, $month, $arrayfrais)
+    {
+
+        $querydb = PdoGsb::$myPdo->prepare('INSERT INTO fichefrais (idvisiteur,mois,nbJustificatifs,montantValide,dateModif,idEtat)
+        VALUES (:userid,:thismonth,0,0,now(),"CR")');
+
+
+        $querydb->bindParam(':userid', $userid, PDO::PARAM_STR);
+        $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+        $querydb->execute();
+
+        $keys = array_keys($arrayfrais);
+        foreach ($keys as $idfrais)
+        {
+            $qte = $arrayfrais[$idfrais];
+            $querydb = PdoGsb::$myPdo->prepare('INSERT INTO lignefraisforfait (idvisiteur,mois,idFraisForfait,quantite) 
+            VALUES (:userid,:thismonth,:idfrais,:qte)');
+
+            $querydb->bindParam(':userid', $userid, PDO::PARAM_STR);
+            $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+            $querydb->bindParam(':idfrais', $idfrais, PDO::PARAM_STR);
+            $querydb->bindParam(':qte', $qte, PDO::PARAM_INT);
+            
+            $querydb->execute();
+
+        }
+        
     }
 
 

@@ -6,13 +6,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Acceuil <span class="sr-only"></span></a>
+        <a class="nav-link" href="index.php">Acceuil <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Renseigner fiche frais</a>
+        <a class="nav-link" href="index.php?session=fichefraisform&action=show">Renseigner fiche frais</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Consulter fiche frais</a>
+        <a class="nav-link" href="index.php?session=fichefrais">Consulter fiche frais</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="controllers/c_logout.php">Se deconnecter</a>

@@ -50,11 +50,19 @@ function getMonth($date)
 
 
 
+function intArray($Array)
+{
+    $boolReturn = true;
 
-
-
-
-
+    foreach ($array as $value) {
+        if ($value <= 0 ) 
+        {
+            $boolReturn = false;
+        }
+        
+    }
+    return $boolReturn;
+}
 
 
 
