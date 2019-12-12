@@ -63,13 +63,13 @@ class Pdogsb
     }
 
 
-    public function getFraisForfait($visiteur, $month)
+    public function getFraisForfait($userid, $month)
     {
         $querydb = PdoGsb::$myPdo->prepare('SELECT fraisforfait.id as idfrais, fraisforfait.libelle as libelle,
         lignefraisforfait.quantite as quantite FROM lignefraisforfait INNER JOIN fraisforfait ON
         fraisforfait.id = lignefraisforfait.idfraisforfait WHERE lignefraisforfait.idVisiteur = :userid 
         AND lignefraisforfait.mois = :thismonth ORDER BY lignefraisforfait.idfraisforfait');
-        $querydb->bindParam(':userid', $visiteur, PDO::PARAM_STR);
+        $querydb->bindParam(':userid', $userid, PDO::PARAM_STR);
         $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
         $querydb->execute();
 
@@ -125,7 +125,6 @@ class Pdogsb
 
     public function SetHorsForfait($userid, $month, $date, $wording, $amount)
     {
-
         $querydb = PdoGsb::$myPdo->prepare('INSERT INTO lignefraishorsforfait (idvisiteur,mois,libelle,date,montant)
         VALUES (:userid,:thismonth,:thiswording,:thisdate,:thisamount)');
 
@@ -136,11 +135,21 @@ class Pdogsb
         $querydb->bindParam(':thisdate', $date, PDO::PARAM_STR);
         $querydb->bindParam(':thisamount', $amount, PDO::PARAM_STR);
         $querydb->execute();
-
         
     }
     
+    public function getHorsForfait($userid, $month)
+    {
+        $querydb = PdoGsb::$myPdo->prepare('SELECT * FROM lignefraishorsforfait WHERE lignefraishorsforfait.idvisiteur = :userid
+        AND lignefraishorsforfait.mois = :thismonth');
 
+        
+        $querydb->bindParam(':userid', $userid, PDO::PARAM_STR);
+        $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+        $querydb->execute();
+
+        return $querydb = $querydb->fetchall();
+    }
 
     
 

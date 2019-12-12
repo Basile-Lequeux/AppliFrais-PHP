@@ -40,8 +40,10 @@ if (($_GET['action'] == 'newhorsforfait'))
 
 }
 
-
 $fraisforfait = $pdo->getFraisForfait($_SESSION['userid'], $month);
+
+$horsforfait = $pdo->getHorsForfait($_SESSION['userid'], $month);
+
 
 if (empty($fraisforfait)) 
 {
@@ -50,4 +52,9 @@ if (empty($fraisforfait))
 else 
 {
     require 'view/v_fichefraisform.php';
+}
+
+if (!empty($horsforfait)) 
+{
+    require 'view/v_horsforfait.php';    
 }

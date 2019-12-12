@@ -4,7 +4,7 @@
        <table class="table table-striped">
           <tbody>
              <tr>
-                <td colspan="1">
+                <td>
                 <h1>Ajouter vos frais forfaitisés</h1>
                    <form class="well form-horizontal" role="form" method="post" action ="index.php?session=fichefraisform&action=submitform">
 
@@ -16,26 +16,29 @@
                       foreach($fraisforfait as $data)
                       { 
                         ?>         
-                            <label class="col-md-4 control-label"><?php echo($data['libelle']) ?></label>
-                            <div class="col-md-8 inputGroupContainer">
+                            <label class="col-md-1 control-label"><?php echo($data['libelle']) ?></label>
+                            <div class="col-md-2 inputGroupContainer">
                             <div class="input-group">
                             <span class="input-group-addon">
                             <i class="glyphicon glyphicon-asterisk"></i>
                             </span>
                             <input id="frais" name="frais[<?php echo $data['idfrais'] ?>]" value="<?php echo($data['quantite']) ?>" class="form-control" required="true"></div>
                             </div>
+                            
                           
                      <?php     
                       }?>
                      
-                      <button type="submit" class="btn btn-primary">Soumettre</button>                    
+                                    
                          </div>
+                          <button type="submit" class="btn btn-primary">Soumettre</button>     
                       </fieldset>
                    </form>
                 </td>
              </tr>
           </tbody>
        </table>
+       </div>
 
 
 
@@ -55,8 +58,8 @@
                       <fieldset>  
                       <div class="form-group">
 
-                      <label class="col-md-4 control-label"></label>
-                      <div class="col-md-8 inputGroupContainer">
+                      <label class="col-md-1 control-label">date</label>
+                      <div class="col-md-2 inputGroupContainer">
                       <div class="input-group">
                       <span class="input-group-addon">
                       <i class="glyphicon glyphicon-asterisk"></i>
@@ -65,8 +68,8 @@
                       </div>
                       </div>
 
-                      <label class="col-md-4 control-label">libéllé</label>
-                      <div class="col-md-8 inputGroupContainer">
+                      <label class="col-md-1 control-label">libéllé</label>
+                      <div class="col-md-2 inputGroupContainer">
                       <div class="input-group">
                       <span class="input-group-addon">
                       <i class="glyphicon glyphicon-asterisk"></i>
@@ -75,8 +78,8 @@
                       </div>
                       </div>
 
-                      <label class="col-md-4 control-label">montant</label>
-                      <div class="col-md-8 inputGroupContainer">
+                      <label class="col-md-1 control-label">montant</label>
+                      <div class="col-md-2 inputGroupContainer">
                       <div class="input-group">
                       <span class="input-group-addon">
                       <i class="glyphicon glyphicon-asterisk"></i>
@@ -87,20 +90,18 @@
 
                       <button type="submit" class="btn btn-primary">Soumettre</button>
 
-          
-
                       </div>
                       </fieldset>
                    </form>
                 </td>
              </tr>
           </tbody>
-
-
-          
+          </table>
+          </div>
           
          
-    </div>
+
+
 
 
 
