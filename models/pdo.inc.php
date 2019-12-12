@@ -21,7 +21,6 @@ class Pdogsb
 
     }
 
-
     public function __destruct()
     {
         Pdogsb::$myPdo = null;
@@ -94,7 +93,6 @@ class Pdogsb
         }
     }
 
-
     public function SetFraisForfait($userid, $month, $arrayfrais)
     {
 
@@ -123,6 +121,34 @@ class Pdogsb
         }
         
     }
+
+
+    public function SetHorsForfait($userid, $month, $date, $wording, $amount)
+    {
+
+        $querydb = PdoGsb::$myPdo->prepare('INSERT INTO lignefraishorsforfait (idvisiteur,mois,libelle,date,montant)
+        VALUES (:userid,:thismonth,:thiswording,:thisdate,:thisamount)');
+
+
+        $querydb->bindParam(':userid', $userid, PDO::PARAM_STR);
+        $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+        $querydb->bindParam(':thiswording', $wording, PDO::PARAM_STR);
+        $querydb->bindParam(':thisdate', $date, PDO::PARAM_STR);
+        $querydb->bindParam(':thisamount', $amount, PDO::PARAM_STR);
+        $querydb->execute();
+
+        
+    }
+    
+
+
+    
+
+
+
+
+
+
 
 
 

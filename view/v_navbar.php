@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Logo GSB</a>
+  <img src="img/logo.jpg" width="72px" height="auto" display="block"  class="navbar-brand"></img>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,7 +18,7 @@
         <a class="nav-link" href="controllers/c_logout.php">Se deconnecter</a>
       </li>
       <li class="nav-item">
-        <p class="nav-link" ><?php echo $_SESSION['firstname'].''.$_SESSION['name']?></p>
+        <a class="nav-link"><?php echo $_SESSION['firstname'].''.$_SESSION['name']?></a>
       </li>
     
     </ul>
