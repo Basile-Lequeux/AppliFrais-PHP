@@ -33,28 +33,44 @@ elseif (empty($_GET['session']))
 }
 var_dump($_GET['session']);
 
-switch ($_GET['session']) 
-{
-    case 'connection':
-        require 'controllers/c_connection.php';
-    break;
-    
-    case 'visiteur' :
-        require 'controllers/c_homevisiteur.php';
-    break;
 
-    case 'comptable':
-        require 'controllers/c_homecomptable.php';
-    break;
-    
-    case 'fichefrais':
-        require 'controllers/c_fichefrais.php';
-    break;
 
-    case 'fichefraisform':
-        require 'controllers/c_fichefraisform.php';
-    break;
-} 
+
+    switch ($_GET['session']) 
+    {
+        case 'connection':
+            require 'controllers/c_connection.php';
+        break;
+        
+        case 'visiteur' :
+            require 'controllers/c_homevisiteur.php';
+        break;
+
+        case 'comptable':
+            require 'controllers/c_homecomptable.php';
+        break;
+        
+        case 'fichefrais':
+            require 'controllers/c_fichefrais.php';
+        break;
+
+        case 'fichefraisform':
+            require 'controllers/c_fichefraisform.php';
+        break;
+
+        case 'listfiches':
+            require 'controllers/c_listfiches.php';
+        break;
+
+        case 'paiement':
+            require 'controllers/c_paiement.php';
+        break;
+
+    } 
+
+
+    
+
 
 
 

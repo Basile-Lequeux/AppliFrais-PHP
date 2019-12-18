@@ -63,6 +63,7 @@ class Pdogsb
     }
 
 
+
     public function getFraisForfait($userid, $month)
     {
         $querydb = PdoGsb::$myPdo->prepare('SELECT fraisforfait.id as idfrais, fraisforfait.libelle as libelle,
@@ -152,10 +153,31 @@ class Pdogsb
     }
 
     
+    public function DeleteHorsForfait($id)
+    {
+        $querydb = PdoGsb::$myPdo->prepare('DELETE FROM lignefraishorsforfait WHERE lignefraishorsforfait.id = :thisid');
+
+        $querydb->bindParam(':thisid', $id, PDO::PARAM_STR);
+
+        $querydb->execute();
+
+    }
 
 
 
 
+    public function getFicheFraisCL()
+    {
+    
+        $querydb = PdoGsb::$myPdo->query('SELECT idvisiteur,mois,nom,prenom FROM fichefrais 
+        INNER JOIN visiteur v ON v.id=idvisiteur WHERE idEtat = "'.'CL'.'" ');
+
+        
+        return $querydb->fetchall();
+
+
+
+    }
 
 
 

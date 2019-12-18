@@ -34,11 +34,19 @@ if (($_GET['action'] == 'newhorsforfait'))
     $wording = filter_input(INPUT_POST, 'wording', FILTER_SANITIZE_STRING);
     $amount = filter_input(INPUT_POST, 'amount', FILTER_VALIDATE_FLOAT);
 
-    
-
     $pdo->SetHorsForfait($_SESSION['userid'], $month, $date, $wording, $amount);
 
 }
+
+
+if ($_GET['action'] == 'delete')
+{
+    $pdo->DeleteHorsForfait($_GET['idhorsforfait']);
+}
+
+
+
+
 
 $fraisforfait = $pdo->getFraisForfait($_SESSION['userid'], $month);
 

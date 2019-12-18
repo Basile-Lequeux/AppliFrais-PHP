@@ -11,7 +11,7 @@
             <table id="example" style="width:100%" class="table table-striped table-bordered">
               <thead>
                 <tr>
-                  <th>Forfait Etape</th>
+                  <th>Forfaitoerijoerifjoeifrj Etape</th>
                   <th>Frais kilométrique</th>
                   <th>Nuit Hôtel</th>
                   <th>Repas Restaurant</th>
@@ -21,9 +21,9 @@
 
                 <tr>
                 <?php
-                foreach($fraisforfait as $data)
+                foreach($fichefrais as $data)
                     {
-                        echo('<td>'.$data['quantite'].'</td>');
+                        echo('<td>'.$data['dateModif'].'</td>');
                     }?>
                 </tr>
                 </tbody>
