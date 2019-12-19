@@ -14,10 +14,10 @@ $month = getMonth(date('d/m/Y'));
 require 'view/v_header.php';
 
 
-
 if (!$isconnected) 
 {
     $_GET['session'] = 'connection';
+    $_SESSION['role'] = 'defineuser';
 }
 elseif (empty($_GET['session']))
 {
@@ -35,43 +35,48 @@ var_dump($_GET['session']);
 
 
 
+if ($_GET['session'] == 'connection') 
+{
+    require 'controllers/c_connection.php';
+}
 
+
+if ($_SESSION['role'] == 'visiteur')
+{
     switch ($_GET['session']) 
     {
-        case 'connection':
-            require 'controllers/c_connection.php';
-        break;
-        
-        case 'visiteur' :
-            require 'controllers/c_homevisiteur.php';
-        break;
 
-        case 'comptable':
-            require 'controllers/c_homecomptable.php';
-        break;
+        case 'visiteur':
+            require 'controllers/c_homevisiteur.php';
+            break;
         
         case 'fichefrais':
             require 'controllers/c_fichefrais.php';
-        break;
+            break;
 
         case 'fichefraisform':
             require 'controllers/c_fichefraisform.php';
-        break;
+            break;
+    }
 
+}
+elseif ($_SESSION['role'] == 'comptable') 
+{
+    switch ($_GET['session']) 
+    {
+        case 'comptable':
+            require 'controllers/c_homecomptable.php';
+            break;
+        
         case 'listfiches':
             require 'controllers/c_listfiches.php';
-        break;
+            break;
 
         case 'paiement':
             require 'controllers/c_paiement.php';
-        break;
-
-    } 
-
-
-    
-
-
+            break;
+    }
+}
 
 
 

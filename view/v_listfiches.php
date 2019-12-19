@@ -4,7 +4,7 @@
     <thead>
     <tr>
 
-      <th scope="col">nom</th>
+      <th scope="col">Visiteur</th>
       <th scope="col">mois</th>
 
     </tr>
@@ -16,8 +16,8 @@
                         { 
                         ?>
                         <tr>                          
-                            <td><?php echo($data['nom'].$data['prenom']) ?></td>
-                            <td><?php echo($data['mois']) ?></td>
+                            <td><?php echo($data['nom'].' '.$data['prenom']) ?></td>
+                            <td><?php echo(getStringMonth($data['mois'])) ?></td>
                             <th><a href ="index.php?session=listfiches&selected=<?php echo($data['idvisiteur'].$data['mois']) ?>" class="glyphicon glyphicon-file"></a></th>
                         </tr>                                                    
                     <?php     
