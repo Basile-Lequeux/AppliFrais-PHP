@@ -5,11 +5,10 @@ require_once 'models/model.php';
 
 session_start();
 
+setlocale(LC_TIME, "fr_FR", "French");
 $pdo = Pdogsb::getPdo();
 $isconnected = isconnected();
-$month = getMonth(date('d/m/Y'));
-
-
+$month = getmonth(strftime("%B %G")); //  getmonth = fonction qui enleve l'accent a 'février'
 
 require 'view/v_header.php';
 
@@ -60,6 +59,10 @@ if ($_SESSION['role'] == 'visiteur')
     }
 
 }
+
+
+
+
 elseif ($_SESSION['role'] == 'comptable') 
 {
     switch ($_GET['session']) 
@@ -75,6 +78,8 @@ elseif ($_SESSION['role'] == 'comptable')
         case 'paiement':
             require 'controllers/c_paiement.php';
             break;
+
+          
     }
 }
 

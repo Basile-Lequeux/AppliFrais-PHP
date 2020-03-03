@@ -3,7 +3,7 @@
 
 require 'view/v_navbar.php';
 
-
+// Pour update les frais
 if (($_GET['action'] == 'submitform')) 
 {
 
@@ -14,12 +14,12 @@ if (($_GET['action'] == 'submitform'))
 }
 
 
+// Pour créer des nouvelles lignes de frais
 if (($_GET['action'] == 'submitnewform')) 
 {
 
     $Frais = filter_input(INPUT_POST, 'frais', FILTER_DEFAULT ,FILTER_FORCE_ARRAY);
 
-    var_dump($Frais);
     
 
     $pdo->SetFraisForfait($_SESSION['userid'], $month, $Frais);
@@ -39,12 +39,10 @@ if (($_GET['action'] == 'newhorsforfait'))
 }
 
 
-if ($_GET['action'] == 'delete')
+if ($_GET['action'] == 'delete') 
 {
     $pdo->DeleteHorsForfait($_GET['idhorsforfait']);
 }
-
-
 
 
 

@@ -5,7 +5,7 @@
 class Pdogsb
 {
     private static $serveur = 'mysql:host=localhost';
-    private static $bdd = 'dbname=base_gsb';
+    private static $bdd = 'dbname=applifrais';
     private static $user = 'root';
     private static $mdp = '';
     private static $myPdo;
@@ -37,7 +37,7 @@ class Pdogsb
         
     }
 
-
+    // Lors de la connection verifie le couple identifiant/mdp d'un visiteur
     public function getVisiteur($login, $password)
     {   
         $querydb = PdoGsb::$myPdo->prepare('SELECT * FROM visiteur WHERE login = :login AND mdp = :password ');
@@ -49,8 +49,18 @@ class Pdogsb
 
     }
 
+    public function getVisiteurById($id)
+    {   
+        $querydb = PdoGsb::$myPdo->query('SELECT nom,prenom FROM visiteur WHERE id = "'.$id.'" ');
+        
+        return $querydb->fetch();
 
-    
+        
+
+    }
+
+
+    // Lors de la connection verifie le couple identifiant/mdp d'un comptable
     public function getComptable($login, $password)
     {   
         $querydb = PdoGsb::$myPdo->prepare('SELECT * FROM comptable WHERE login = :login AND mdp = :password ');
@@ -69,12 +79,13 @@ class Pdogsb
         $querydb = PdoGsb::$myPdo->prepare('SELECT fraisforfait.id as idfrais, fraisforfait.libelle as libelle,
         lignefraisforfait.quantite as quantite FROM lignefraisforfait INNER JOIN fraisforfait ON
         fraisforfait.id = lignefraisforfait.idfraisforfait WHERE lignefraisforfait.idVisiteur = :userid 
-        AND lignefraisforfait.mois = :thismonth ORDER BY lignefraisforfait.idfraisforfait');
+        AND lignefraisforfait.mois = :thismonth');
+        
         $querydb->bindParam(':userid', $userid, PDO::PARAM_STR);
         $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
         $querydb->execute();
 
-        return $querydb = $querydb->fetchall();
+        return $querydb->fetchall();
     }
 
     public function UpdateFraisForfait($userid, $month, $arrayfrais)
@@ -163,6 +174,16 @@ class Pdogsb
 
     }
 
+    public function RefuseHorsForfait($id)
+    {
+        $querydb = PdoGsb::$myPdo->prepare('UPDATE lignefraishorsforfait SET libelle = CONCAT("REFUSE: ", libelle) WHERE id = :thisid');
+
+        $querydb->bindParam(':thisid', $id, PDO::PARAM_STR);
+
+        $querydb->execute();
+
+    }
+
 
 
 
@@ -172,19 +193,17 @@ class Pdogsb
         $querydb = PdoGsb::$myPdo->query('SELECT idvisiteur,mois,nom,prenom FROM fichefrais 
         INNER JOIN visiteur v ON v.id=idvisiteur WHERE idEtat = "'.'CL'.'" ');
 
-        
         return $querydb->fetchall();
-
-
 
     }
 
-
-
-
-
-}
-
-
     
+    
+    public function getMonthFiche($userid)
+    {
+        $querydb = PdoGsb::$myPdo->query('SELECT mois,libelle FROM fichefrais INNER JOIN etat e ON idEtat = e.id WHERE idVisiteur = "'.$userid.'" ');
 
+        return $querydb->fetchall();
+    }
+  
+}  

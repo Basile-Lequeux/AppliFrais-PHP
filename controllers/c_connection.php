@@ -21,12 +21,12 @@ if (!is_array($user))
 
 
 }
-
-else 
-{
-    setSESSION($user["id"], $user["nom"], $user["prenom"], 'visiteur');    
-    header('Location: index.php');
-}
+    
+    else 
+    {
+        setSESSION($user["id"], $user["nom"], $user["prenom"], 'visiteur');    
+        header('Location: index.php');
+    }
 
 
 

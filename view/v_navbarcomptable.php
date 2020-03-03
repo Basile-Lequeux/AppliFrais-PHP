@@ -9,7 +9,7 @@
         <a class="nav-link" href="index.php">Acceuil <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?session=listfiches">Validation de fiche frais</a>
+        <a class="nav-link" href="index.php?session=listfiches&action=show">Validation de fiche frais</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="index.php?session=paiement">Suivre paiement des fiches de frais</a>
