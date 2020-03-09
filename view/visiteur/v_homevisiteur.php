@@ -1,3 +1,5 @@
+<?php require 'view/visiteur/v_navbar.php'; ?>
+
 <div class='container'>
     <div class='row'>
     <h1>Bienvenue <?php echo($_SESSION['firstname'].' '.$_SESSION['name'])?> sur votre plateforme de gestion de vos fiches de frais</h1>

@@ -4,10 +4,17 @@
 
 class Pdogsb
 {
+    // private static $serveur = 'mysql:host=localhost';
+    // private static $bdd = 'dbname=applifrais';
+    // private static $user = 'root';
+    // private static $mdp = '';
+    // private static $myPdo;
+    // private static $myPdoGsb = null;
+
     private static $serveur = 'mysql:host=localhost';
     private static $bdd = 'dbname=applifrais';
-    private static $user = 'root';
-    private static $mdp = '';
+    private static $user = 'user1';
+    private static $mdp = 'rootroot';
     private static $myPdo;
     private static $myPdoGsb = null;
 
@@ -76,7 +83,7 @@ class Pdogsb
 
     public function getFraisForfait($userid, $month)
     {
-        $querydb = PdoGsb::$myPdo->prepare('SELECT fraisforfait.id as idfrais, fraisforfait.libelle as libelle,
+        $querydb = PdoGsb::$myPdo->prepare('SELECT fraisforfait.id as idfrais, fraisforfait.libelle as libelle, fraisforfait.montant as montant,
         lignefraisforfait.quantite as quantite FROM lignefraisforfait INNER JOIN fraisforfait ON
         fraisforfait.id = lignefraisforfait.idfraisforfait WHERE lignefraisforfait.idVisiteur = :userid 
         AND lignefraisforfait.mois = :thismonth');
@@ -186,7 +193,6 @@ class Pdogsb
 
 
 
-
     public function getFicheFraisCL()
     {
     
@@ -197,7 +203,17 @@ class Pdogsb
 
     }
 
+    public function getFicheFraisVA()
+    {
     
+        $querydb = PdoGsb::$myPdo->query('SELECT idvisiteur,mois,nom,prenom FROM fichefrais 
+        INNER JOIN visiteur v ON v.id=idvisiteur WHERE idEtat = "'.'VA'.'" ');
+
+        return $querydb->fetchall();
+
+    }
+
+
     
     public function getMonthFiche($userid)
     {
@@ -205,5 +221,29 @@ class Pdogsb
 
         return $querydb->fetchall();
     }
+
+
+    public function setFicheFraisVA($userid, $month)
+    {
+        $querydb = PdoGsb::$myPdo->prepare('UPDATE fichefrais SET idEtat = "VA" WHERE idVisiteur = :thisid AND mois = :thismonth');
+
+       
+        $querydb->bindParam(':thisid', $userid, PDO::PARAM_STR);
+        $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+
+        $querydb->execute();
+    }
+
+    public function setFicheFraisRB($userid, $month)
+    {
+        $querydb = PdoGsb::$myPdo->prepare('UPDATE fichefrais SET idEtat = "RB" WHERE idVisiteur = :thisid AND mois = :thismonth');
+
+       
+        $querydb->bindParam(':thisid', $userid, PDO::PARAM_STR);
+        $querydb->bindParam(':thismonth', $month, PDO::PARAM_STR);
+
+        $querydb->execute();
+    }
+
   
 }  

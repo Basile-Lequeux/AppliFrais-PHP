@@ -1,8 +1,8 @@
 <?php
 
-require 'view/v_navbarcomptable.php';
+require 'view/comptable/v_navbarcomptable.php';
 
-$fiches = $pdo->getFicheFraisCL();
+
 
 
 if ($_GET['action'] == 'delete') 
@@ -18,11 +18,22 @@ if ($_GET['action'] == 'modif')
    
 }
 
+if ($_GET['action'] == 'validation') 
+{
+   
+    $pdo->setFicheFraisVA($_GET['idfiche'], $_GET['monthfiche']);
+    $_GET['idfiche'] = '';
+    $_GET['monthfiche'] = '';
+    
+}
+
+
+$fiches = $pdo->getFicheFraisCL();
 
 if (empty($_GET['idfiche']) AND empty($_GET['monthfiche']))
 {
     
-    require 'view/v_listfiches.php';
+    require 'view/comptable/v_listfiches.php';
     
 }
 else 
@@ -32,7 +43,7 @@ else
     $horsforfait = $pdo->getHorsForfait($_GET['idfiche'], $_GET['monthfiche']);
     $nomVisiteur = $pdo->getVisiteurById($_GET['idfiche']);
     
-    require 'view/v_fichefrais.php';
+    require 'view/comptable/v_fichefrais.php';
 }
 
 

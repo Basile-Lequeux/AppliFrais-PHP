@@ -1,3 +1,4 @@
+<div class = "container">
 <h1>Vos frais hors forfait</h1>
     <table class="table table-striped">
     <thead>
@@ -13,7 +14,7 @@
                     <?php
                         foreach($horsforfait as $data)
                         { 
-                        ?>
+                            ?>
                         <tr>                          
                             <td><?php echo($data['libelle']) ?></td>
                             <td><?php echo(strftime("%d/%m/%G", strtotime($data['date']))) ?></td>
@@ -25,3 +26,5 @@
 
 
     </table>
+
+                        </div>

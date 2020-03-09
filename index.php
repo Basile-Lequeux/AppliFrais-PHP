@@ -5,19 +5,23 @@ require_once 'models/model.php';
 
 session_start();
 
-setlocale(LC_TIME, "fr_FR", "French");
-$pdo = Pdogsb::getPdo();
-$isconnected = isconnected();
-$month = getmonth(strftime("%B %G")); //  getmonth = fonction qui enleve l'accent a 'février'
+setlocale(LC_TIME, "fr_FR.utf8", "fra"); // pour avoir la date en français
+
+$pdo = Pdogsb::getPdo(); // initialisation pdo
+
+$isconnected = isconnected(); // retourne l'id de l'utilisateur dans la variable de session
+
+$month = getmonth(strftime("%B %G")); //  getmonth => fonction qui enleve l'accent à 'février', faire pour août aussi !!!
 
 require 'view/v_header.php';
 
 
-if (!$isconnected) 
+if (!$isconnected)
 {
     $_GET['session'] = 'connection';
     $_SESSION['role'] = 'defineuser';
 }
+
 elseif (empty($_GET['session']))
 {
     if ($_SESSION['role'] == 'visiteur')
@@ -30,8 +34,7 @@ elseif (empty($_GET['session']))
      }
     
 }
-var_dump($_GET['session']);
-
+// var_dump($_GET['session']);
 
 
 if ($_GET['session'] == 'connection') 
@@ -46,15 +49,15 @@ if ($_SESSION['role'] == 'visiteur')
     {
 
         case 'visiteur':
-            require 'controllers/c_homevisiteur.php';
+            require 'view/visiteur/v_homevisiteur.php';
             break;
         
         case 'fichefrais':
-            require 'controllers/c_fichefrais.php';
+            require 'controllers/visiteur/c_fichefrais.php';
             break;
 
         case 'fichefraisform':
-            require 'controllers/c_fichefraisform.php';
+            require 'controllers/visiteur/c_fichefraisform.php';
             break;
     }
 
@@ -68,15 +71,15 @@ elseif ($_SESSION['role'] == 'comptable')
     switch ($_GET['session']) 
     {
         case 'comptable':
-            require 'controllers/c_homecomptable.php';
+            require 'view/comptable/v_homecomptable.php';
             break;
         
         case 'listfiches':
-            require 'controllers/c_listfiches.php';
+            require 'controllers/comptable/c_listfiches.php';
             break;
 
         case 'paiement':
-            require 'controllers/c_paiement.php';
+            require 'controllers/comptable/c_paiement.php';
             break;
 
           

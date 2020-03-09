@@ -67,5 +67,7 @@
 
 
     </table>
-
+    <div class= "float-right">
+    <a class="btn btn-success" href="index.php?session=listfiches&action=validation&idfiche=<?php echo($_GET['idfiche'])?>&monthfiche=<?php echo($_GET['monthfiche'])?>" role="button">Valider la fiche</a>
+    </div>
 </div>

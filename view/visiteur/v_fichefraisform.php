@@ -1,14 +1,11 @@
 <!-- LIGNE FRAIS FORFAIT -->
-
 <div class="container">
        <table class="table table-striped">
           <tbody>
             <form class="well form-horizontal" role="form" method="post" action ="index.php?session=fichefraisform&action=submitform">
                 <td>
                 <h1>Ajouter vos frais forfaitisés</h1>
-
-                      <fieldset>
-                               
+                      <fieldset>                           
                       <div class="form-group">
                
                       <?php
@@ -23,8 +20,7 @@
                             </span>
                             <input id="frais" name="frais[<?php echo $data['idfrais'] ?>]" value="<?php echo($data['quantite']) ?>" class="form-control" required="true"></div>
                             </div>
-                            
-                          
+                                                      
                      <?php     
                       }?>
                      

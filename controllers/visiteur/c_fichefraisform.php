@@ -1,7 +1,7 @@
 <?php
 
 
-require 'view/v_navbar.php';
+require 'view/visiteur/v_navbar.php';
 
 // Pour update les frais
 if (($_GET['action'] == 'submitform')) 
@@ -53,14 +53,14 @@ $horsforfait = $pdo->getHorsForfait($_SESSION['userid'], $month);
 
 if (empty($fraisforfait)) 
 {
-    require 'view/v_newfichefraisform.php';
+    require 'view/visiteur/v_newfichefraisform.php';
 }
 else 
 {
-    require 'view/v_fichefraisform.php';
+    require 'view/visiteur/v_fichefraisform.php';
 }
 
 if (!empty($horsforfait)) 
 {
-    require 'view/v_horsforfait.php';    
+    require 'view/visiteur/v_horsforfait.php';    
 }

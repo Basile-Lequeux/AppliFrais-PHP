@@ -42,7 +42,7 @@ function getMonth($date)
     {
         $date = 'fevrier ' .+ substr($date, -4);
     }
-
+    
     return $date;
 }
 
@@ -62,10 +62,13 @@ function intArray($Array)
 }
 
 
-
-
-
-
+function addError($error)
+{
+    if (!isset($_REQUEST['error'])) {
+        $_REQUEST['error'] = array();
+    }
+    $_REQUEST['error'][] = $error;
+}
 
 
 
