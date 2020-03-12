@@ -23,7 +23,8 @@ function logout()
     session_destroy();
 }
 
-function Error($msg)
+
+function addError($msg)
 {
     if (!isset($_REQUEST['errors'])) 
     {
@@ -60,16 +61,6 @@ function intArray($Array)
     }
     return $boolReturn;
 }
-
-
-function addError($error)
-{
-    if (!isset($_REQUEST['error'])) {
-        $_REQUEST['error'] = array();
-    }
-    $_REQUEST['error'][] = $error;
-}
-
 
 
 

@@ -1,5 +1,5 @@
 <div class="container">
-  <form role="form" method="post" action="index.php?session=connexion">   
+  <form role="form" method="post" action="index.php?session=errorconnexion">   
     <div class="row justify-content-center align-items-center" style="height:100vh">
       <img src="img/logo.png" width="" height="auto" display="block"></img>
       <div class="col-4">

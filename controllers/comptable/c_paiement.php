@@ -28,7 +28,7 @@ if ($_GET['action'] == 'show')
 if ($_GET['action'] == 'fiche') 
 {
 
-    $fichefrais = $pdo->getFraisForfait($_GET['idfiche'],$_GET['monthfiche']);
+    $fraisforfait = $pdo->getFraisForfait($_GET['idfiche'],$_GET['monthfiche']);
     $horsforfait = $pdo->getHorsForfait($_GET['idfiche'], $_GET['monthfiche']);
     $nomVisiteur = $pdo->getVisiteurById($_GET['idfiche']);
 

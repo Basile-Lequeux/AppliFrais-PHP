@@ -1,3 +1,4 @@
+
 <?php
 
 require_once 'models/pdo.inc.php';
@@ -43,7 +44,7 @@ if ($_GET['session'] == 'connection')
 }
 
 
-if ($_SESSION['role'] == 'visiteur')
+if ($_SESSION['role'] === 'visiteur')
 {
     switch ($_GET['session']) 
     {
@@ -66,7 +67,7 @@ if ($_SESSION['role'] == 'visiteur')
 
 
 
-elseif ($_SESSION['role'] == 'comptable') 
+elseif ($_SESSION['role'] === 'comptable') 
 {
     switch ($_GET['session']) 
     {
@@ -91,5 +92,3 @@ elseif ($_SESSION['role'] == 'comptable')
 require 'view/v_end.php';
 
 ?>
-
-
